@@ -265,6 +265,50 @@
   }
   .btn-secondary:hover { border-color: var(--muted); }
 
+  /* ── FILL IN BLANK / ID INPUT ── */
+  .fitb-wrap { margin-bottom: 24px; }
+  .fitb-input-row { display: flex; gap: 10px; align-items: stretch; }
+  .fitb-input {
+    flex: 1; background: var(--card); border: 2px solid var(--border);
+    border-radius: 12px; padding: 14px 18px; color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    transition: border-color 0.2s; outline: none;
+  }
+  .fitb-input:focus { border-color: var(--accent, #7c6aff); }
+  .fitb-input.correct-input { border-color: var(--correct); background: rgba(34,197,94,0.08); color: #86efac; }
+  .fitb-input.wrong-input { border-color: var(--wrong); background: rgba(239,68,68,0.08); color: #fca5a5; }
+  .fitb-input:disabled { opacity: 0.8; cursor: default; }
+  .fitb-submit {
+    background: var(--card); border: 2px solid var(--border);
+    border-radius: 12px; padding: 14px 20px; cursor: pointer;
+    color: var(--text); font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 13px; white-space: nowrap; transition: border-color 0.2s, background 0.2s;
+  }
+  .fitb-submit:hover:not(:disabled) { border-color: var(--accent, #7c6aff); background: var(--surface); }
+  .fitb-submit:disabled { opacity: 0.5; cursor: default; }
+  .fitb-hint {
+    margin-top: 10px; font-size: 12px; color: var(--muted);
+    padding: 8px 12px; background: var(--surface); border-radius: 8px;
+    border-left: 3px solid var(--border);
+  }
+  .type-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 99px; padding: 3px 10px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+  }
+
+  /* ── RETRY WRONG BTN ── */
+  .btn-retry-wrong {
+    background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.4);
+    color: #fca5a5; border-radius: 10px; padding: 12px 28px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px;
+    cursor: pointer; transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-retry-wrong:hover { background: rgba(239,68,68,0.2); border-color: rgba(239,68,68,0.7); }
+  .btn-retry-wrong:disabled { opacity: 0.35; cursor: default; }
+
   /* ── REVIEW SCREEN ── */
   #review { padding: 40px 32px; max-width: 720px; margin: 0 auto; }
   .review-item {
@@ -385,7 +429,8 @@
     </div>
   </div>
   <div class="results-actions">
-    <button class="btn-primary" onclick="retryQuiz()">↺ Retry</button>
+    <button class="btn-primary" onclick="retryQuiz()">↺ Retry All</button>
+    <button class="btn-retry-wrong" id="btn-retry-wrong" onclick="retryWrongOnly()">🎯 Retry Wrong Only</button>
     <button class="btn-secondary" onclick="showReview()">📋 Review Answers</button>
     <button class="btn-secondary" onclick="goHome()">🏠 Home</button>
   </div>
@@ -1006,6 +1051,70 @@ const DATA = {
         ],
       },
     }
+  },
+
+  "Gender and Society": {
+    color: "#e05c9b", icon: "⚧️",
+    lessons: {
+      "Midterm – Sex, Gender & Sexuality": {
+        "Multiple Choice": [
+          {type:"mc", q:"What term refers to the biological and physiological characteristics such as chromosomes and hormones that define humans as female or male?", o:["Gender","Sexual Orientation","Biological Sex","Human Sexuality"], a:2},
+          {type:"mc", q:"Biological features present at birth that are directly involved in human reproduction (such as ovaries or testes) are called?", o:["Secondary Sex Characteristics","Reproductive Roles","Primary Sex Characteristics","Gender Identity"], a:2},
+          {type:"mc", q:"Physical traits that develop during puberty but are NOT directly involved in reproduction (e.g., breast development, deeper voice) are called?", o:["Primary Sex Characteristics","Reproductive Roles","Biological Sex","Secondary Sex Characteristics"], a:3},
+          {type:"mc", q:"Which term refers to the socially constructed roles, behaviors, and identities considered appropriate for men and women?", o:["Biological Sex","Gender","Human Sexuality","Sexual Orientation"], a:1},
+          {type:"mc", q:"In pre-colonial Philippine history, the spiritual healers who were often female or feminized men were called?", o:["Datu","Alibata","Babaylan","Baybayin"], a:2},
+          {type:"mc", q:"A social system where men hold primary power and dominate leadership roles is called?", o:["Matriarchy","Democracy","Patriarchy","Theocracy"], a:2},
+          {type:"mc", q:"What does the Gender and Development (GAD) program focus on?", o:["Promoting male dominance in the workplace","Promoting gender equality and integrating gender perspectives in policies and development","Eliminating cultural traditions","Enforcing biological sex roles"], a:1},
+          {type:"mc", q:"What is RA 9710 known as?", o:["Anti-Violence Against Women Act","Magna Carta of Women","Family Code of the Philippines","Women Empowerment Act"], a:1},
+          {type:"mc", q:"The concept that includes sex, gender identity, sexual orientation, intimacy, and eroticism throughout life is called?", o:["Gender","Reproductive Role","Human Sexuality","Biological Sex"], a:2},
+          {type:"mc", q:"Why are topics about sex and sexuality often considered taboo in traditional societies?", o:["Because they are scientifically false","Because they are viewed as private, sensitive, or morally restricted by cultural, religious, and social norms","Because they are too complex","Because governments prohibit discussion"], a:1},
+          {type:"mc", q:"The component of sexuality that refers to whom a person is physically, romantically, and emotionally attracted to is?", o:["Gender Identity","Human Sexuality","Biological Sex","Sexual Orientation"], a:3},
+          {type:"mc", q:"A person who is emotionally and physically attracted to members of the OPPOSITE sex is?", o:["Homosexual","Bisexual","Asexual","Heterosexual"], a:3},
+          {type:"mc", q:"A person who is emotionally and physically attracted to members of the SAME sex is?", o:["Heterosexual","Bisexual","Homosexual","Pansexual"], a:2},
+          {type:"mc", q:"A person who is attracted to MORE THAN ONE gender is?", o:["Asexual","Bisexual","Heterosexual","Cisgender"], a:1},
+          {type:"mc", q:"A person who experiences little or no sexual attraction to others is?", o:["Bisexual","Heterosexual","Pansexual","Asexual"], a:3},
+          {type:"mc", q:"How does Pansexuality DIFFER from Bisexuality?", o:["Pansexuals are only attracted to one gender","Pansexual individuals are attracted to people REGARDLESS of gender; bisexual individuals are attracted to two or more genders","They are exactly the same","Bisexuals are attracted regardless of gender"], a:1},
+          {type:"mc", q:"In the acronym LGBTTQQIAAP, the Q that refers to the PROCESS OF EXPLORING one's identity is?", o:["Queer","Questioning","Qualified","Quintessential"], a:1},
+          {type:"mc", q:"Individuals whose gender identity MATCHES the sex they were assigned at birth are called?", o:["Transgender","Intersex","Non-binary","Cisgender"], a:3},
+          {type:"mc", q:"Which statement about Reproductive Roles is TRUE?", o:["Reproductive roles refer only to the biological act of giving birth","Reproductive roles also include social expectations and responsibilities related to family care","Reproductive roles apply only to women","Reproductive roles are always voluntary"], a:1},
+          {type:"mc", q:"What term describes social expectations and obligations related to family care and maintenance based on biological sex?", o:["Gender Identity","Sexual Orientation","Reproductive Roles","Primary Sex Characteristics"], a:2},
+        ],
+        "Fill in the Blanks": [
+          {type:"fitb", q:"The biological and physiological characteristics such as chromosomes and hormones that define humans as female or male is called ___________.", a:"Biological Sex", hint:"Think about chromosomes, hormones — the biology you're born with."},
+          {type:"fitb", q:"Biological features present at birth directly involved in human reproduction are called ___________ Sex Characteristics.", a:"Primary", hint:"These are DIRECT, present at birth."},
+          {type:"fitb", q:"Physical traits that develop during puberty but are not directly involved in reproduction are called ___________ Sex Characteristics.", a:"Secondary", hint:"These develop LATER, during puberty."},
+          {type:"fitb", q:"The socially constructed roles, behaviors, and identities considered appropriate for men and women is called ___________.", a:"Gender", hint:"It's SOCIAL, not biological."},
+          {type:"fitb", q:"In pre-colonial Philippines, the spiritual healers who were often female or feminized men were called ___________.", a:"Babaylan", hint:"A Filipino pre-colonial term for spiritual leaders."},
+          {type:"fitb", q:"A social system where men hold primary power and dominate leadership roles is called ___________.", a:"Patriarchy", hint:"Think 'father-rule' — from Greek 'pater'."},
+          {type:"fitb", q:"The Philippine law RA 9710 is called the Magna Carta of ___________.", a:"Women", hint:"This law promotes the rights of a specific group."},
+          {type:"fitb", q:"The concept that includes sex, gender identity, sexual orientation, intimacy, and eroticism throughout life is called ___________ Sexuality.", a:"Human", hint:"It covers the whole person across their lifetime."},
+          {type:"fitb", q:"The component of sexuality referring to whom a person is physically, romantically, and emotionally attracted to is called Sexual ___________.", a:"Orientation", hint:"It's about the DIRECTION of your attraction."},
+          {type:"fitb", q:"A person who is attracted to people regardless of gender is called ___________.", a:"Pansexual", hint:"'Pan' means ALL — attracted to ALL genders."},
+          {type:"fitb", q:"A person who experiences little or no sexual attraction to others is called ___________.", a:"Asexual", hint:"The prefix 'a-' means 'without'."},
+          {type:"fitb", q:"Individuals whose gender identity matches the sex they were assigned at birth are called ___________.", a:"Cisgender", hint:"'Cis' means 'on the same side' — identity matches assignment."},
+          {type:"fitb", q:"In LGBTTQQIAAP, the letter Q that refers to exploring one's identity is ___________.", a:"Questioning", hint:"This person is still exploring, not yet certain."},
+          {type:"fitb", q:"The social expectations and obligations related to family care based on biological sex are called ___________ Roles.", a:"Reproductive", hint:"These go beyond just giving birth — they include family responsibilities."},
+          {type:"fitb", q:"A person attracted to members of the opposite sex is called ___________.", a:"Heterosexual", hint:"'Hetero' means different/other."},
+        ],
+        "Identification": [
+          {type:"id", q:"IDENTIFY: What term refers to the social expectations and obligations related to family care and maintenance based on biological sex?", a:"Reproductive Roles", hint:"It's about SOCIAL expectations tied to biological sex — not just giving birth."},
+          {type:"id", q:"IDENTIFY: What do you call the pre-colonial Filipino spiritual healers who were often female or feminized men?", a:"Babaylan", hint:"A specific Filipino cultural/historical term."},
+          {type:"id", q:"IDENTIFY: What is the name of the Philippine Republic Act (RA 9710) that promotes women's rights?", a:"Magna Carta of Women", hint:"Magna Carta = great charter; this one is FOR women."},
+          {type:"id", q:"IDENTIFY: What social system places men in primary power and dominates leadership roles?", a:"Patriarchy", hint:"From Latin/Greek — 'father rule'."},
+          {type:"id", q:"IDENTIFY: What term covers sex, gender identity, sexual orientation, intimacy, and eroticism throughout a person's life?", a:"Human Sexuality", hint:"It's broader than just 'sex' — it covers the WHOLE spectrum."},
+          {type:"id", q:"IDENTIFY: What component of sexuality describes who a person is physically, romantically, and emotionally attracted to?", a:"Sexual Orientation", hint:"It's the DIRECTION of your emotional/physical attraction."},
+          {type:"id", q:"IDENTIFY: What do you call a person whose gender identity MATCHES the sex they were assigned at birth?", a:"Cisgender", hint:"The opposite of transgender."},
+          {type:"id", q:"IDENTIFY: What term refers to a person who is attracted to people REGARDLESS of gender?", a:"Pansexual", hint:"'Pan' = all; they see beyond gender."},
+          {type:"id", q:"IDENTIFY: What is the term for a person who experiences little or no sexual attraction to others?", a:"Asexual", hint:"The prefix 'a-' means absence or without."},
+          {type:"id", q:"IDENTIFY: What term describes the biological and physiological characteristics (chromosomes, hormones) that define humans as female or male?", a:"Biological Sex", hint:"It's BIOLOGICAL — determined by science, not society."},
+          {type:"id", q:"IDENTIFY: What do you call the physical traits that develop during PUBERTY but are not directly involved in reproduction?", a:"Secondary Sex Characteristics", hint:"Secondary = comes AFTER birth, during puberty."},
+          {type:"id", q:"IDENTIFY: What do you call biological features PRESENT AT BIRTH that are directly involved in reproduction?", a:"Primary Sex Characteristics", hint:"Primary = FIRST, present from birth."},
+          {type:"id", q:"IDENTIFY: What term refers to the socially constructed roles, behaviors, and identities considered appropriate for men and women?", a:"Gender", hint:"It's CONSTRUCTED by society, not determined by biology."},
+          {type:"id", q:"IDENTIFY: In LGBTTQQIAAP, the Q referring to the PROCESS of exploring one's identity is what word?", a:"Questioning", hint:"Still exploring, not yet decided."},
+          {type:"id", q:"IDENTIFY: A person attracted to members of the SAME sex is called what?", a:"Homosexual", hint:"'Homo' means same."},
+        ],
+      },
+    }
   }
 };
 
@@ -1220,7 +1329,6 @@ function renderQuestion() {
 
   document.getElementById('progress-bar').style.width = pct + '%';
   document.getElementById('q-num').textContent = `Question ${current} of ${total}`;
-  document.getElementById('q-text').textContent = q.q;
 
   const feedback = document.getElementById('feedback-box');
   feedback.className = 'feedback-box';
@@ -1232,40 +1340,106 @@ function renderQuestion() {
 
   const optsList = document.getElementById('options-list');
   optsList.innerHTML = '';
-  const letters = ['A', 'B', 'C', 'D'];
 
-  q.o.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
-    btn.innerHTML = `<span class="option-letter">${letters[i]}</span><span>${opt}</span>`;
-    btn.onclick = () => selectAnswer(i, q.a, btn);
-    optsList.appendChild(btn);
-  });
+  // ── type badge ──
+  const qType = q.type || 'mc';
+  const typeMeta = { mc: ['🔘','Multiple Choice'], fitb: ['✏️','Fill in the Blank'], id: ['🏷️','Identification'] };
+  const [tIcon, tLabel] = typeMeta[qType] || typeMeta.mc;
+
+  // Build question area
+  const qText = document.getElementById('q-text');
+  qText.innerHTML = `<span class="type-badge">${tIcon} ${tLabel}</span><br>${q.q}`;
+
+  if (qType === 'mc') {
+    const letters = ['A', 'B', 'C', 'D'];
+    q.o.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.innerHTML = `<span class="option-letter">${letters[i]}</span><span>${opt}</span>`;
+      btn.onclick = () => selectMC(i, q.a, btn);
+      optsList.appendChild(btn);
+    });
+  } else {
+    // Fill in blank OR Identification
+    const wrap = document.createElement('div');
+    wrap.className = 'fitb-wrap';
+    const row = document.createElement('div');
+    row.className = 'fitb-input-row';
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'fitb-input';
+    input.id = 'fitb-input';
+    input.placeholder = qType === 'fitb' ? 'Type your answer here...' : 'Identify the term...';
+    input.autocomplete = 'off';
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') submitText(); });
+    const submitBtn = document.createElement('button');
+    submitBtn.className = 'fitb-submit';
+    submitBtn.textContent = 'Submit';
+    submitBtn.onclick = submitText;
+    row.appendChild(input);
+    row.appendChild(submitBtn);
+    wrap.appendChild(row);
+    if (q.hint) {
+      const hint = document.createElement('div');
+      hint.className = 'fitb-hint';
+      hint.textContent = '💡 Hint: ' + q.hint;
+      wrap.appendChild(hint);
+    }
+    optsList.appendChild(wrap);
+    setTimeout(() => input.focus(), 100);
+  }
 }
 
-function selectAnswer(chosen, correct, clickedBtn) {
+function selectMC(chosen, correct, clickedBtn) {
   if (answered) return;
   answered = true;
-
   const buttons = document.querySelectorAll('.option-btn');
   buttons.forEach(b => b.disabled = true);
-
   const feedback = document.getElementById('feedback-box');
-
   if (chosen === correct) {
     score++;
     clickedBtn.classList.add('correct');
     feedback.textContent = '✓ Correct!';
     feedback.className = 'feedback-box correct show';
+    userAnswers.push({ chosen, correct, isCorrect: true, userText: null });
   } else {
     clickedBtn.classList.add('wrong');
     buttons[correct].classList.add('correct');
     const correctText = quizQuestions[currentQIndex].o[correct];
     feedback.textContent = `✗ Incorrect. The correct answer is: ${correctText}`;
     feedback.className = 'feedback-box wrong show';
+    userAnswers.push({ chosen, correct, isCorrect: false, userText: null });
   }
+  document.getElementById('next-btn').classList.add('show');
+}
 
-  userAnswers.push({ chosen, correct });
+function submitText() {
+  if (answered) return;
+  const input = document.getElementById('fitb-input');
+  if (!input) return;
+  const userVal = input.value.trim();
+  if (!userVal) return;
+  answered = true;
+  input.disabled = true;
+  const submitBtn = input.parentElement.querySelector('.fitb-submit');
+  if (submitBtn) submitBtn.disabled = true;
+
+  const q = quizQuestions[currentQIndex];
+  const correct = q.a;
+  const isCorrect = userVal.toLowerCase() === correct.toLowerCase();
+
+  const feedback = document.getElementById('feedback-box');
+  if (isCorrect) {
+    score++;
+    input.classList.add('correct-input');
+    feedback.textContent = '✓ Correct!';
+    feedback.className = 'feedback-box correct show';
+  } else {
+    input.classList.add('wrong-input');
+    feedback.textContent = `✗ Incorrect. The correct answer is: ${correct}`;
+    feedback.className = 'feedback-box wrong show';
+  }
+  userAnswers.push({ chosen: -1, correct: -1, isCorrect, userText: userVal, correctText: correct });
   document.getElementById('next-btn').classList.add('show');
 }
 
@@ -1312,6 +1486,12 @@ function showResults() {
   ring.style.setProperty('--ring-color', color);
   ring.style.setProperty('--pct', pct + '%');
 
+  // Enable/disable retry wrong button
+  const retryWrongBtn = document.getElementById('btn-retry-wrong');
+  const wrongCount = userAnswers.filter(a => !a.isCorrect).length;
+  retryWrongBtn.disabled = wrongCount === 0;
+  retryWrongBtn.textContent = wrongCount > 0 ? `🎯 Retry Wrong Only (${wrongCount})` : '🎯 No Wrong Answers!';
+
   showScreen('results');
 }
 
@@ -1326,63 +1506,63 @@ function retryQuiz() {
   renderQuestion();
 }
 
+function retryWrongOnly() {
+  const wrongQs = quizQuestions.filter((_, i) => userAnswers[i] && !userAnswers[i].isCorrect);
+  if (wrongQs.length === 0) return;
+  quizQuestions = shuffle(wrongQs);
+  currentQIndex = 0;
+  score = 0;
+  userAnswers = [];
+  answered = false;
+  showScreen('quiz');
+  renderQuestion();
+}
+
 function showReview() {
   const sub = document.getElementById('review-sub');
   sub.textContent = `${score} / ${quizQuestions.length} correct · Review all questions below`;
 
   const list = document.getElementById('review-list');
   list.innerHTML = '';
+  const letters = ['A', 'B', 'C', 'D'];
+  const typeMeta = { mc: '🔘 MC', fitb: '✏️ Fill-in-Blank', id: '🏷️ Identification' };
 
   quizQuestions.forEach((q, i) => {
     const ua = userAnswers[i];
     if (!ua) return;
-    const isCorrect = ua.chosen === ua.correct;
-    const letters = ['A', 'B', 'C', 'D'];
+    const isCorrect = ua.isCorrect;
+    const qType = q.type || 'mc';
 
     const item = document.createElement('div');
     item.className = 'review-item';
-    item.innerHTML = `
-      <span class="review-badge ${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '✓ Correct' : '✗ Wrong'}</span>
-      <div class="review-q">${i+1}. ${q.q}</div>
-      <div class="review-options">
-        ${q.o.map((opt, oi) => {
-          let cls = 'review-opt';
-          if (oi === ua.correct) cls += ' correct-ans';
-          else if (oi === ua.chosen && !isCorrect) cls += ' user-wrong';
-          return `<div class="${cls}">${letters[oi]}. ${opt}</div>`;
-        }).join('')}
-      </div>
-    `;
+
+    if (qType === 'mc') {
+      item.innerHTML = `
+        <span class="review-badge ${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '✓ Correct' : '✗ Wrong'} · ${typeMeta[qType]||'MC'}</span>
+        <div class="review-q">${i+1}. ${q.q}</div>
+        <div class="review-options">
+          ${q.o.map((opt, oi) => {
+            let cls = 'review-opt';
+            if (oi === ua.correct) cls += ' correct-ans';
+            else if (oi === ua.chosen && !isCorrect) cls += ' user-wrong';
+            return `<div class="${cls}">${letters[oi]}. ${opt}</div>`;
+          }).join('')}
+        </div>
+      `;
+    } else {
+      item.innerHTML = `
+        <span class="review-badge ${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '✓ Correct' : '✗ Wrong'} · ${typeMeta[qType]||''}</span>
+        <div class="review-q">${i+1}. ${q.q}</div>
+        <div class="review-options">
+          <div class="review-opt ${!isCorrect ? 'user-wrong' : 'correct-ans'}">Your answer: ${ua.userText || '—'}</div>
+          ${!isCorrect ? `<div class="review-opt correct-ans">✓ Correct answer: ${q.a}</div>` : ''}
+        </div>
+      `;
+    }
     list.appendChild(item);
   });
 
   showScreen('review');
-}
-
-function showResults() {
-  const total = quizQuestions.length;
-  const pct = Math.round((score / total) * 100);
-  const wrong = total - score;
-
-  let icon, title, color;
-  if (pct >= 90) { icon = '🏆'; title = 'Excellent!'; color = '#f7c948'; }
-  else if (pct >= 75) { icon = '🎯'; title = 'Great Job!'; color = '#22c55e'; }
-  else if (pct >= 60) { icon = '📚'; title = 'Keep Studying!'; color = '#7c6aff'; }
-  else { icon = '💪'; title = 'Practice More!'; color = '#ef4444'; }
-
-  document.getElementById('results-icon').textContent = icon;
-  document.getElementById('results-title').textContent = title;
-  document.getElementById('results-sub').textContent = `You scored ${score} out of ${total} questions`;
-  document.getElementById('score-num').textContent = pct + '%';
-  document.getElementById('r-correct').textContent = score;
-  document.getElementById('r-wrong').textContent = wrong;
-  document.getElementById('r-total').textContent = total;
-
-  const ring = document.getElementById('score-ring');
-  ring.style.setProperty('--ring-color', color);
-  ring.style.setProperty('--pct', pct + '%');
-
-  showScreen('results');
 }
 
 // ═══════════════════════════════════════════════════════════════
